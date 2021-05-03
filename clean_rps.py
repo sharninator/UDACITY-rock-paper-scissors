@@ -33,6 +33,15 @@ class Human(Player):
         human_move = input("Enter your move:\n")
         return human_move
 
+#Reflect Player
+class Reflect(Player):
+    def move(self):
+        if self.move is None:
+            return random.choice(moves)
+        else:
+            return self.p1.move
+     
+
 #CLASS FOR GAMEPLAY
 
 class Game:
@@ -61,12 +70,6 @@ class Game:
 
         else:
             print(f"\n***TIE GAME!*** \nSCORE IS: P1= {self.p1_score} P2= {self.p2_score}\n")
-    
-    def final_score(p1_score, p2_score):        
-        if (self.p1_score > self.p2_score):
-            return "PLAYER 1 WINS!\nFinal score:P1= {self.p1_score} P2= {self.p2_score}"
-        else:
-            return "PLAYER 2 WINS!\nFinal score:P1= {self.p1_score} P2= {self.p2_score}"
 
 #method for playing the game
     def play_game(self):
@@ -74,11 +77,14 @@ class Game:
         for round in range (1,4):
             print(f"\nRound {round}!")
             self.play_round()
-        return final_score()
-        
+        if self.p1_score > self.p2_score:
+            print(f"***PLAYER 1 WINS!***\nFinal score:P1= {self.p1_score} P2= {self.p2_score}")
+        elif self.p1_score == self.p2_score:
+            print("***TIE GAME - NO ONE WINS!***")
+        else:
+            print(f"***PLAYER 2 WINS!***\nFinal score:P1= {self.p1_score} P2= {self.p2_score}")
+             
 # Play the game!
 if __name__ == '__main__':
-    game = Game(Human(), Random())
+    game = Game(Human(), Reflect())
     game.play_game()
-            
-        
