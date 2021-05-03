@@ -35,12 +35,25 @@ class Human(Player):
 
 #Reflect Player
 class Reflect(Player):
+    def __init__(self):
+        Player.__init__(self)
+        self.learned_move = None
+
     def move(self):
-        if self.move is None:
+        if self.learned_move is None:
             return random.choice(moves)
-        else:
-            return self.p1.move
-     
+        return self.learned_move
+    
+    def learn(self, my_move, their_move):
+        self.learned_move = their_move
+
+#Cycle Player
+class Cycle(Player):
+    def __init__(self):
+        Player.__init__(self)
+        
+    def move(self):
+  
 
 #CLASS FOR GAMEPLAY
 
@@ -86,5 +99,5 @@ class Game:
              
 # Play the game!
 if __name__ == '__main__':
-    game = Game(Human(), Reflect())
+    game = Game(Human(), Cycle())
     game.play_game()
