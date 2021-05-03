@@ -51,8 +51,16 @@ class Reflect(Player):
 class Cycle(Player):
     def __init__(self):
         Player.__init__(self)
-        
+        counter = 0
+    
     def move(self):
+        round_move = move[counter]
+        
+        if counter > 2
+            counter = 0
+        elif
+            counter += 1
+        return round_move
   
 
 #CLASS FOR GAMEPLAY
